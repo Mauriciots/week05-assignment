@@ -1,13 +1,19 @@
 /*
-In this activity, we are going to create a function that can calculate which coins we should use when we need to give change.
+In this activity, we are going to create a function that can calculate which coins we should use when 
+we need to give change.
 
 Change Calculator
-We will be given two numbers, the total of a transaction, and the amount of cash given to the cashier. Both of these numbers will be represented as whole numbers in cents. Therefore $10 will be represented as 1000.
+We will be given two numbers, the total of a transaction, and the amount of cash given to the cashier. 
+Both of these numbers will be represented as whole numbers in cents. Therefore $10 will be represented as 1000.
 
-Our function calculateChange should return an object which describes the total amount of change for the cashier to give back. Although pennies are not used in circulation, we will still calculate the amount of pennies to give back.
+Our function calculateChange should return an object which describes the total amount of change for the cashier 
+to give back. Although pennies are not used in circulation, we will still calculate the amount of pennies to give back.
 
 Instruction
-Create a function named calculateChange that takes in a total amount of a bill and the total cash given to pay that bill. Return a new object that describes the total amount of change for the cashier to give back. Omit any types of change that you shouldn't give back, i.e. if you don't give back a twenty dollar bill, don't include it in the results.
+Create a function named calculateChange that takes in a total amount of a bill and the total cash given to pay 
+that bill. Return a new object that describes the total amount of change for the cashier to give back. 
+Omit any types of change that you shouldn't give back, i.e. if you don't give back a twenty dollar bill, 
+don't include it in the results.
 
 Valid denominations are as follows:
 
@@ -23,7 +29,30 @@ Penny (1¢)
 */
 
 const calculateChange = function(total, cash) {
-  // Your code here
+  const change = [
+    [2000, 'twentyDollar'],
+    [1000, 'tenDollar'],
+    [500, 'fiveDollar'],
+    [200, 'twoDollar'],
+    [100, 'oneDollar'],
+    [25, 'quarter'],
+    [10, 'dime'],
+    [5, 'nickel'],
+    [1, 'penny']
+  ].reduce((result, [amount, name]) => {
+    if (result.total > amount) {
+      const changeCounter = Math.floor(result.total / amount);
+      return {
+        ...result,
+        total: result.total - (amount * changeCounter),
+        [name]: changeCounter,
+      }
+    }
+    return { ...result };
+  }, { total: cash - total });
+  
+  delete change.total;
+  return change;
 };
 
 console.log(calculateChange(1787, 2000)); // { twoDollar: 1, dime: 1, penny: 3 }

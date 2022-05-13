@@ -1,7 +1,9 @@
-/*In this exercise, we will be given a url encoded string of key-value pairs, and we will have to turn it into a JavaScript object.
+/*In this exercise, we will be given a url encoded string of key-value pairs, 
+and we will have to turn it into a JavaScript object.
 
 URL Encoded Strings
-To safely send data in a URL, the data first has to be encoded to convert any special characters to URL safe characters. For this assignment we will only focus on the following URL encoding rules:
+To safely send data in a URL, the data first has to be encoded to convert any special characters 
+to URL safe characters. For this assignment we will only focus on the following URL encoding rules:
 
 %20 represents a space character.
 Key-value pairs are represented using an = character: key=value
@@ -17,12 +19,17 @@ Could be converted to the following JavaScript object:
 }
 
 Instruction
-Create a function named urlDecode that will receive a URL encoded string, and return the a JavaScript object that represents that data.
+Create a function named urlDecode that will receive a URL encoded string, and return the a JavaScript object 
+that represents that data.
 
 */
 
 const urlDecode = function(text) {
-  // Put your solution here
+  return text.split('&').reduce((obj, pair) => {
+    const [key, value] = pair.split('=');
+    obj[key] = value.split('%20').join(' ');
+    return obj;
+  }, {});
 };
 
 console.log(urlDecode("duck=rubber")); //{duck: "rubber"}
