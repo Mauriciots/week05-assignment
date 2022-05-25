@@ -24,10 +24,13 @@ that represents that data.
 
 */
 
-const urlDecode = function(text) {
-  return text.split('&').reduce((obj, pair) => {
-    const [key, value] = pair.split('=');
-    obj[key] = value.split('%20').join(' ');
+const urlDecode = function (text) {
+  return text.split("&").reduce((obj, pair) => {
+    // const separatorIndex = pair.indexOf("=");
+    // const key = pair.slice(0, separatorIndex);
+    // const value = pair.slice(separatorIndex + 1, pair.length);
+    const [key, value] = pair.split("=");
+    obj[key] = value.split("%20").join(" ");
     return obj;
   }, {});
 };

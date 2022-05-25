@@ -30,61 +30,59 @@ any of the ingredients from that recipe.
 
 */
 
-const ingredientCheck = function(bakeryIngredients, ingredients) {
-    for (let ingredient of ingredients) {
-        for (let bakeryIngridient of bakeryIngredients) {
-            if (ingredient === bakeryIngridient) {
-                return true;
-            }
-        }
+const ingredientCheck = function (bakeryIngredients, ingredients) {
+  for (let ingredient of ingredients) {
+    if (bakeryIngredients.includes(ingredient)) {
+      return true;
     }
-    return false;
-}
-const chooseRecipe = function(bakeryA, bakeryB, recipes) {
-    for (let recipe of recipes) {
-        const matchA = ingredientCheck(bakeryA, recipe.ingredients);
-        const matchB = ingredientCheck(bakeryB, recipe.ingredients);
-        if (matchA && matchB) {
-            return recipe.name;
-        }
+  }
+  return false;
+};
+const chooseRecipe = function (bakeryA, bakeryB, recipes) {
+  for (let recipe of recipes) {
+    const matchA = ingredientCheck(bakeryA, recipe.ingredients);
+    const matchB = ingredientCheck(bakeryB, recipe.ingredients);
+    if (matchA && matchB) {
+      return recipe.name;
     }
-    return 'none';
-}
+  }
+  return "none";
+};
 
-let bakeryA = ['saffron', 'eggs', 'tomato paste', 'coconut', 'custard'];
-let bakeryB = ['milk', 'butter', 'cream cheese'];
+let bakeryA = ["saffron", "eggs", "tomato paste", "coconut", "custard"];
+let bakeryB = ["milk", "butter", "cream cheese"];
 let recipes = [
-    {
-        name: 'Coconut Sponge Cake',
-        ingredients: ['coconut', 'cake base']
-    },
-    {
-        name: 'Persian Cheesecake',
-        ingredients: ['saffron', 'cream cheese']
-    },
-    {
-        name: 'Custard Surprise',
-        ingredients: ['custard', 'ground beef']
-    }
+  {
+    name: "Coconut Sponge Cake",
+    ingredients: ["coconut", "cake base"],
+  },
+  {
+    name: "Persian Cheesecake",
+    ingredients: ["saffron", "cream cheese"],
+  },
+  {
+    name: "Custard Surprise",
+    ingredients: ["custard", "ground beef"],
+  },
 ];
 
 console.log(chooseRecipe(bakeryA, bakeryB, recipes)); //Persian Cheesecake
 
-bakeryA = ['potatoes', 'bay leaf', 'raisins'];
-bakeryB = ['red bean', 'dijon mustard', 'apples'];
+bakeryA = ["potatoes", "bay leaf", "raisins"];
+bakeryB = ["red bean", "dijon mustard", "apples"];
 recipes = [
-    {
-        name: 'Potato Ganache',
-        ingredients: ['potatoes', 'chocolate']
-    },
-    {
-        name: 'Sweet Fish',
-        ingredients: ['anchovies', 'honey']
-    },
-    {
-        name: "Nima's Famous Dijon Raisins",
-        ingredients: ['dijon mustard', 'raisins']
-    }
+  {
+    name: "Potato Ganache",
+    ingredients: ["potatoes", "chocolate"],
+  },
+  {
+    name: "Sweet Fish",
+    ingredients: ["anchovies", "honey"],
+  },
+  {
+    name: "Nima's Famous Dijon Raisins",
+    ingredients: ["dijon mustard", "raisins"],
+  },
 ];
 
 console.log(chooseRecipe(bakeryA, bakeryB, recipes)); //Nima's Famous Dijon Raisins
