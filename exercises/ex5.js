@@ -5,8 +5,9 @@ replacing all whitespace with %20.
 Percent Encoding
 Take a look at the following URL, specifically the last part:
 
-This URL will perform a google search for the term "cornerstone college". 
-Notice that when the string "cornerstone college" is part of a URL, the space is replaced with %20.
+https://www.google.com/search?q=cornerstone%20college
+
+This URL will perform a google search for the term "cornerstone college". Notice that when the string "cornerstone college" is part of a URL, the space is replaced with %20.
 
 If we want to add a parameter to a url, there are certain characters that must be encoded in order to make the 
 URL valid. There are many characters that must be encoded, including: , !, ", and #. For this exercise, 
@@ -22,20 +23,20 @@ Warning
 Use some sort of looping. Do Not use String.prototype.replace
 */
 
-const urlEncode = function(text) {
-  let encodedUrl = '';
-  const words = text.trim().split(' ');
+const urlEncode = function (text) {
+  let encodedUrl = "";
+  const words = text.trim().split(" ");
   for (let i = 0; i < words.length; i++) {
     const word = words[i];
     if (i === words.length - 1) {
       encodedUrl += word;
     } else {
-      encodedUrl += word + '%20';
+      encodedUrl += word + "%20";
     }
   }
   return encodedUrl;
 };
-  
+
 console.log(urlEncode("cornerstone college")); //cornerstone%20college
 console.log(urlEncode(" cornerstone college ")); //cornerstone%20college
 console.log(urlEncode("blue is greener than purple for sure")); //blue%20is%20greener%20than%20purple%20for%20sure

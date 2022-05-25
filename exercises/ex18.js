@@ -19,6 +19,8 @@ close to a square shape.
 
 The message is then coded by reading down the columns going left to right. For example, the message above is coded as:
 
+imtgdvs fearwer mayoogo anouuio ntnnlvt wttddes aohghn sseoau
+
 And that's the output of the algorithm. We can then reverse the process to decrypt the text and read the original message.
 
 Instruction
